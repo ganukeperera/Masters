@@ -7,7 +7,7 @@ def main():
 
 def get_notification_type(notification_type: str):
     if notification_type == "email":
-            return EmailNotification()
+        return EmailNotification()
     elif notification_type == "sms":
         return SMSNotification()
     elif notification_type == "push":
