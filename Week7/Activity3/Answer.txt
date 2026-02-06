@@ -1,0 +1,4 @@
+It has use following design patterns
+Factory Method used in BotFactory to create helper and friend
+Singleton Design pattern used in KeeperMeta class
+Observer Pattern used in watcher 
