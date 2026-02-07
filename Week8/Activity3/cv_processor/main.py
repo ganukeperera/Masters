@@ -22,14 +22,47 @@ def extract_text_from_docx(file_path):
 def analyze_cv(cv_text):
     """Sends CV text to OpenAI GPT-4.0 for analysis."""
     prompt = f"""
-    You are an expert AI recruiter analyzing a candidate's CV in IT, software engineering, data analytics and computer science fields. 
+        You are an expert AI recruiter analyzing a candidate's CV in IT, software engineering, data analytics, and computer science fields.
 
-    1. Identify and categorize the candidate's experience into fields (e.g., Software Engineering, Lecturer, Business, Finance).
-    2. Suggest the main two areas of the candidate's expertise and the most relevant job roles based on the experience.
-    3. Provide recommendations for improving the CV in three bullet points.
+        Your task:
 
-    CV Text:
-    {cv_text}
+        1. Identify and categorize the candidate's experience into professional fields 
+        (e.g., Software Engineering, Lecturer, Business, Finance).
+        2. Suggest the main TWO areas of expertise.
+        3. Recommend the most relevant job roles based strictly on the CV content.
+        4. Provide exactly THREE bullet-point recommendations to improve the CV.
+
+        Strict Rules (Important):
+
+        - Do NOT invent or assume any skills, certifications, or experience not explicitly mentioned.
+        - Do NOT exaggerate the candidate’s level (e.g., do not label as "Senior" unless clearly stated).
+        - Do NOT include generic advice unrelated to the CV.
+        - Do NOT rewrite the CV.
+        - Do NOT include emojis.
+        - Do NOT include long explanations or storytelling.
+        - Keep the response concise, structured, and professional.
+        - If information is missing, clearly state "Not specified in CV".
+
+        Output Format:
+
+        Fields Identified:
+        - ...
+
+        Top 2 Expertise Areas:
+        - ...
+        - ...
+
+        Recommended Job Roles:
+        - ...
+        - ...
+
+        CV Improvement Recommendations:
+        - ...
+        - ...
+        - ...
+
+        CV Text:
+        {cv_text}
     """
 
     client = genai.Client(api_key=API_KEY)
