@@ -1,15 +1,18 @@
+"""CV Processor"""
+
 import os
-import pdfplumber
+import sys
+import pdfplumber as plumber
 import docx
 from google import genai
 
-# Set your GENAI API key
+# Set your GenAI API key
 API_KEY = "AIzaSyCdt8KI-skUdTXN8oNq7JfMRVD3IeQnQfA"
 
 def extract_text_from_pdf(file_path):
     """Extracts text from a PDF file."""
     text = ""
-    with pdfplumber.open(file_path) as pdf:
+    with plumber.open(file_path) as pdf:
         for page in pdf.pages:
             text += page.extract_text() + "\n"
     return text.strip()
@@ -78,7 +81,7 @@ if __name__ == "__main__":
 
     if not os.path.exists(file_path):
         print("File not found!")
-        exit()
+        sys.exit()
 
     # Extract text based on file type
     if file_path.endswith(".pdf"):
@@ -87,10 +90,10 @@ if __name__ == "__main__":
         cv_text = extract_text_from_docx(file_path)
     else:
         print("Unsupported file format!")
-        exit()
+        sys.exit()
 
     print("\nAnalyzing CV with GEMINI...\n\n ", cv_text,"\n\n")
     analysis_result = analyze_cv(cv_text)
-    
+
     print("\n--- CV Analysis Results ---\n")
     print(analysis_result)
